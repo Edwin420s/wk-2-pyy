@@ -1,0 +1,46 @@
+# Base class
+class Smartphone:
+    def __init__(self, brand, model, battery_life):
+        self.brand = brand           # Public attribute
+        self.model = model           # Public attribute
+        self.__battery_life = battery_life  # Private attribute
+    
+    def make_call(self, number):
+        print(f"Calling {number} from {self.model}...")
+
+    def send_message(self, number, message):
+        print(f"Sending message to {number}: {message}")
+    
+    def get_battery_life(self):
+        return self.__battery_life
+    
+    def charge(self):
+        print(f"{self.model} is charging...")
+    
+    # Private method
+    def __increase_battery(self):
+        self.__battery_life += 10
+
+# Child class inheriting from Smartphone
+class AdvancedSmartphone(Smartphone):
+    def __init__(self, brand, model, battery_life, camera_quality):
+        super().__init__(brand, model, battery_life)  # Inherit from parent
+        self.camera_quality = camera_quality
+    
+    def take_picture(self):
+        print(f"Taking a picture with {self.camera_quality} camera on {self.model}...")
+    
+    # Overriding the make_call method
+    def make_call(self, number):
+        print(f"Making a video call to {number} from {self.model}...")
+
+# Create objects of the classes
+basic_phone = Smartphone("Nokia", "3310", 12)
+advanced_phone = AdvancedSmartphone("Apple", "iPhone 13", 24, "12MP")
+
+# Test methods
+basic_phone.make_call("1234567890")
+advanced_phone.make_call("0987654321")
+
+# Access encapsulated method
+print(f"Battery life of {advanced_phone.model}: {advanced_phone.get_battery_life()} hours")
